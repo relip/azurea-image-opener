@@ -16,13 +16,34 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-if (typeof String.prototype.startsWith != 'function') {
-	String.prototype.startsWith = function (str){
+if (typeof String.prototype.startsWith != 'function')
+{
+	String.prototype.startsWith = function (str)
+	{
 		return this.indexOf(str) == 0;
 	};
 }
 
-System.addOpenUrlHandler(function(url){
+if (typeof String.prototype.endsWith != 'function') 
+{
+	String.prototype.endsWith = function(suffix)
+	{
+		var sub = this.length - suffix.length;
+		return (sub >= 0) && (this.lastIndexOf(suffix) === sub);
+	};
+}
+
+System.addOpenUrlHandler(function(url)
+{
+	// http://azurea.info/ja/wiki/index.php?cmd=read&page=Scripts%2FOpenImages.js
+	for(var i = 0; i < supportedSuffixes.length; ++i)
+	{
+		if(url.endsWith(supportedSuffixes[i]))
+		{
+			return url;
+		}
+	}
+
 	var Response	= Http.sendRequest(url, true);
 	var ContentType	= Response.header;
 	var arr 	= ContentType.split("\n");
