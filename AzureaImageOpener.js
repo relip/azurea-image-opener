@@ -46,7 +46,7 @@ System.addOpenUrlHandler(function(url)
 		}
 	}
 
-	var Response	= Http.sendRequest(url, true);
+	var Response	= Http.sendRequest(url, false);
 	var ContentType	= Response.header;
 	var arr 	= ContentType.split("\n");
 
