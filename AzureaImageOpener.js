@@ -33,6 +33,8 @@ if (typeof String.prototype.endsWith != 'function')
 	};
 }
 
+var supportedSuffixes = ['.png', '.jpg', '.gif']; 
+
 System.addOpenUrlHandler(function(url)
 {
 	// http://azurea.info/ja/wiki/index.php?cmd=read&page=Scripts%2FOpenImages.js
